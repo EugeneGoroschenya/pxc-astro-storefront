@@ -12,6 +12,10 @@ import { getProductById } from 'storefront:client';
 import { unwrap } from '~/lib/util.ts';
 import { getImage } from 'astro:assets';
 import { ProductPrice } from '~/features/product/ProductPrice.tsx';
+import { config } from '~/config';
+import { marked } from 'marked';
+
+const name = config.name;
 
 applyDefaultCacheHeaders(Astro.response.headers);
 
@@ -25,6 +29,9 @@ if (productResponse.error) {
 }
 
 const product = productResponse.data;
+
+const description = product.description ? marked.parse(product.description) : null;
+const tagline = product.tagline ? marked.parse(product.tagline) : null;
 
 const productImageSrcs = [product.imageUrl, ...product.images.map((it) => it.url)];
 const productImages = await Promise.all(
@@ -42,7 +49,7 @@ const firstImage = productImages[0];
 if (!firstImage) throw new Error(`No images found for product ${id}`);
 ---
 
-<PrimaryLayout title={`Astro Shop | ${product.name}`}>
+<PrimaryLayout title={`${name} | ${product.name}`}>
 	<main class="mx-auto mt-8 w-full max-w-[1200px] gap-8">
 		<div
 			class="mx-auto mb-16 mt-8 grid max-w-lg grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-[1fr_32rem] lg:gap-32"
@@ -84,7 +91,7 @@ if (!firstImage) throw new Error(`No images found for product ${id}`);
 					<h1 class="text-pretty text-3xl font-bold md:text-4xl">
 						{product.name}
 					</h1>
-					{product.tagline && <p class="text-slate-700">{product.tagline}</p>}
+					{tagline && <p class="text-slate-700" set:html={tagline}></p>}
 					<p class="text-xl text-slate-700 md:text-2xl">
 						<ProductPrice
 							class="gap-3 font-semibold"
@@ -96,22 +103,29 @@ if (!firstImage) throw new Error(`No images found for product ${id}`);
 
 				<AddToCartForm client:idle product={product} />
 				{
-					product.description && (
+					description && (
 						<ProductDetailDescriptionDialog title="Description" client:idle>
-							<div
-								class="prose whitespace-pre-line py-6 prose-li:my-0"
-								set:html={product.description}
-							/>
+							<div class="prose whitespace-pre-line py-6 prose-li:my-0" set:html={description} />
 						</ProductDetailDescriptionDialog>
 					)
 				}
 			</div>
 		</div>
 
-		<ProductCarouselSection
-			heading="You might also like"
-			filterProducts={(products) => products.filter(({ id }) => id !== product.id)}
-		/>
+		<section class="mb-8">
+			<ProductCarouselSection
+				heading="You might also like"
+				filterProducts={(products) =>
+					products
+						.filter(({ id }) => id !== product.id)
+						.filter(({ collectionIds }) => collectionIds?.includes('bestSellers'))
+						.filter(({ collectionIds }) =>
+							product?.collectionIds?.some((id) =>
+								collectionIds?.filter((id) => id !== 'bestSellers')?.includes(id),
+							),
+						)}
+			/>
+		</section>
 
 		<CollectionSection />
 	</main>

@@ -8,6 +8,9 @@ import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 import SideColumnLayout from '~/layouts/SideColumnLayout.astro';
 import { getProductStock } from '~/lib/products.ts';
 import { unwrap } from '~/lib/util.ts';
+import { config } from '~/config';
+
+const name = config.name;
 
 const searchParams = Object.fromEntries(Astro.url.searchParams);
 
@@ -39,7 +42,7 @@ const products = productsResponse.data.items.filter((product) => {
 });
 ---
 
-<PrimaryLayout title={`Astro Shop | ${collection.name}`}>
+<PrimaryLayout title={`${name} | ${collection.name}`}>
 	<div class="pt-4">
 		<SideColumnLayout class="flex flex-wrap gap-4">
 			<div slot="aside" class="flex flex-col gap-4 py-4">

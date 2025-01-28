@@ -1,7 +1,7 @@
 ---
-import { Icon } from 'astro-icon/components';
+// import { Icon } from 'astro-icon/components';
 import ExternalLink from '~/components/ui/ExternalLink.astro';
-import SocialIconLink from './SocialIconLink.astro';
+// import SocialIconLink from './SocialIconLink.astro';
 
 export interface Props {
 	class?: string;
@@ -9,79 +9,99 @@ export interface Props {
 ---
 
 <footer class={Astro.props.class}>
-	<section class="flex flex-wrap items-center justify-between gap-y-2 py-4">
-		<ul class="flex flex-wrap gap-2" aria-label="Supported payment methods">
-			<li>
-				<Icon name="visa" width={48} height={28} aria-hidden="true" />
-				<div class="sr-only">Visa</div>
-			</li>
-			<li>
-				<Icon name="mastercard" width={48} height={28} aria-hidden="true" />
-				<div class="sr-only">Mastercard</div>
-			</li>
-			<li>
-				<Icon name="paypal" width={48} height={28} aria-hidden="true" />
-				<div class="sr-only">Paypal</div>
-			</li>
-			<li>
-				<Icon name="apple-pay" width={48} height={28} aria-hidden="true" />
-				<div class="sr-only">Apple Pay</div>
-			</li>
-			<li>
-				<Icon name="klarna" width={48} height={28} aria-hidden="true" />
-				<div class="sr-only">Klarna</div>
-			</li>
-			<li>
-				<Icon name="amex" width={48} height={28} aria-hidden="true" />
-				<div class="sr-only">Amex</div>
-			</li>
-		</ul>
-		<ul class="flex flex-wrap gap-2" aria-label="Social links">
-			<li>
-				<SocialIconLink name="Discord" icon="discord" href="https://astro.build/chat" />
-			</li>
-			<li>
-				<SocialIconLink
-					name="YouTube"
-					icon="youtube"
-					href="https://www.youtube.com/@astrodotbuild"
-				/>
-			</li>
-			<li>
-				<SocialIconLink
-					name="X / Twitter"
-					icon="twitter"
-					href="https://twitter.com/astrodotbuild"
-				/>
-			</li>
-			<li>
-				<SocialIconLink name="GitHub" icon="github" href="https://github.com/withastro/astro" />
-			</li>
-			<li>
-				<SocialIconLink name="Reddit" icon="reddit" href="https://www.reddit.com/r/withastro/" />
-			</li>
-			<li>
-				<SocialIconLink name="Mastodon" icon="mastodon" href="https://m.webtoo.ls/@astro" />
-			</li>
-		</ul>
-	</section>
+	<!--<section class="flex flex-wrap items-center justify-between gap-y-2 py-4">-->
+	<!--	<ul class="flex flex-wrap gap-2" aria-label="Supported payment methods">-->
+	<!--		<li>-->
+	<!--			<Icon name="visa" width={48} height={28} aria-hidden="true" />-->
+	<!--			<div class="sr-only">Visa</div>-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<Icon name="mastercard" width={48} height={28} aria-hidden="true" />-->
+	<!--			<div class="sr-only">Mastercard</div>-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<Icon name="paypal" width={48} height={28} aria-hidden="true" />-->
+	<!--			<div class="sr-only">Paypal</div>-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<Icon name="apple-pay" width={48} height={28} aria-hidden="true" />-->
+	<!--			<div class="sr-only">Apple Pay</div>-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<Icon name="klarna" width={48} height={28} aria-hidden="true" />-->
+	<!--			<div class="sr-only">Klarna</div>-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<Icon name="amex" width={48} height={28} aria-hidden="true" />-->
+	<!--			<div class="sr-only">Amex</div>-->
+	<!--		</li>-->
+	<!--	</ul>-->
+	<!--	<ul class="flex flex-wrap gap-2" aria-label="Social links">-->
+	<!--		<li>-->
+	<!--			<SocialIconLink name="Discord" icon="discord" href="https://astro.build/chat" />-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<SocialIconLink-->
+	<!--				name="YouTube"-->
+	<!--				icon="youtube"-->
+	<!--				href="https://www.youtube.com/@astrodotbuild"-->
+	<!--			/>-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<SocialIconLink-->
+	<!--				name="X / Twitter"-->
+	<!--				icon="twitter"-->
+	<!--				href="https://twitter.com/astrodotbuild"-->
+	<!--			/>-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<SocialIconLink name="GitHub" icon="github" href="https://github.com/withastro/astro" />-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<SocialIconLink name="Reddit" icon="reddit" href="https://www.reddit.com/r/withastro/" />-->
+	<!--		</li>-->
+	<!--		<li>-->
+	<!--			<SocialIconLink name="Mastodon" icon="mastodon" href="https://m.webtoo.ls/@astro" />-->
+	<!--		</li>-->
+	<!--	</ul>-->
+	<!--</section>-->
 
 	<div class="border-b border-theme-base-300"></div>
 
-	<section class="flex flex-wrap justify-between gap-y-2 py-6 text-sm text-theme-base-600">
-		<p>
-			{'© 2024 | '}
-			<ExternalLink href="https://astro.build/" target="_blank" rel="noopener noreferrer">
-				{'Astro'}
-			</ExternalLink><span>{' | All Rights Reserved.'}</span>
-			<p class="flex flex-wrap gap-x-4">
-				<ExternalLink href="https://astro.build/privacy/" target="_blank" rel="noopener noreferrer">
-					Privacy Policy
-				</ExternalLink>
-				<ExternalLink href="https://astro.build/terms/" target="_blank" rel="noopener noreferrer">
-					Terms of Service
-				</ExternalLink>
-			</p>
+	<section class="flex flex-wrap justify-center gap-y-2 py-6 text-sm text-theme-base-600">
+
+		<p class="whitespace-nowrap flex">
+			<ExternalLink href="https://prodexa.com/" target="_blank" rel="noopener noreferrer" class="m-auto me-2">
+				<img
+					src="/prodexa-logo.png"
+					alt="prodexa Logo"
+					class="max-h-8 sm:max-h-16 w-10 object-contain object-left" />
+			</ExternalLink>
+			Product Experience Commerce 1.0 &copy;
+			<ExternalLink
+				 href="https://prodexa.com"
+				 target="_blank"
+				 rel="noreferrer"
+				 class="mx-2"
+			>
+				prodexa.com
+			</ExternalLink>
+			2000-{new Date().getFullYear()}
 		</p>
+
+		<!--<p>-->
+		<!--	{'© 2024 | '}-->
+		<!--	<ExternalLink href="https://astro.build/" target="_blank" rel="noopener noreferrer">-->
+		<!--		{'prodexa'}-->
+		<!--	</ExternalLink><span>{' | All Rights Reserved.'}</span>-->
+		<!--	&lt;!&ndash;<p class="flex flex-wrap gap-x-4">&ndash;&gt;-->
+		<!--	&lt;!&ndash;	<ExternalLink href="https://astro.build/privacy/" target="_blank" rel="noopener noreferrer">&ndash;&gt;-->
+		<!--	&lt;!&ndash;		Privacy Policy&ndash;&gt;-->
+		<!--	&lt;!&ndash;	</ExternalLink>&ndash;&gt;-->
+		<!--	&lt;!&ndash;	<ExternalLink href="https://astro.build/terms/" target="_blank" rel="noopener noreferrer">&ndash;&gt;-->
+		<!--	&lt;!&ndash;		Terms of Service&ndash;&gt;-->
+		<!--	&lt;!&ndash;	</ExternalLink>&ndash;&gt;-->
+		<!--	&lt;!&ndash;</p>&ndash;&gt;-->
+		<!--</p>-->
 	</section>
 </footer>

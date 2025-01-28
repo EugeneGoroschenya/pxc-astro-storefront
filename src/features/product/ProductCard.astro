@@ -6,6 +6,7 @@ import Card from '~/components/ui/Card.tsx';
 import { formatProductPrice } from '~/lib/currency.ts';
 import { productPath } from '~/paths.ts';
 import { ProductPrice } from './ProductPrice.tsx';
+import { inferRemoteSize } from 'astro:assets';
 
 interface Props extends Product {
 	class?: string;
@@ -14,6 +15,15 @@ interface Props extends Product {
 }
 
 const { class: className, elementId, imageLoading, ...product } = Astro.props;
+
+let imageUrl = product.imageUrl;
+
+let { width, height } = imageUrl?.startsWith('/')
+	? { height: 290, width: 290 }
+	: await inferRemoteSize(imageUrl);
+const aspect = 290 / height;
+height = aspect * height;
+width = aspect * width;
 ---
 
 <a
@@ -25,10 +35,10 @@ const { class: className, elementId, imageLoading, ...product } = Astro.props;
 	<article>
 		<Card class="flex aspect-[5/6] items-center justify-center">
 			<Image
-				src={new URL(product.imageUrl, Astro.url).href}
+				src={new URL(imageUrl, Astro.url).href}
 				alt={product.name}
-				width={290}
-				height={290}
+				width={width}
+				height={height}
 				loading={imageLoading ?? 'lazy'}
 				densities={[1, 1.5, 2]}
 				draggable="false"
@@ -46,3 +56,11 @@ const { class: className, elementId, imageLoading, ...product } = Astro.props;
 	>
 	</div>
 </a>
+
+<style>
+	img {
+		/* https://dev.to/jeetvora331/remove-background-from-image-using-css-only-fdi */
+		/* https://stackoverflow.com/questions/12662759/make-white-background-of-image-transparent-in-css */
+		mix-blend-mode: multiply;
+	}
+</style>

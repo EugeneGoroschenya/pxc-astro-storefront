@@ -23,6 +23,12 @@
 	.focus-ring-inset {
 		@apply ring-inset ring-offset-0;
 	}
+
+	img {
+		/* https://dev.to/jeetvora331/remove-background-from-image-using-css-only-fdi */
+		/* https://stackoverflow.com/questions/12662759/make-white-background-of-image-transparent-in-css */
+		mix-blend-mode: multiply;
+	}
 }
 
 @layer components {

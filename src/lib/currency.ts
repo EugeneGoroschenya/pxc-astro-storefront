@@ -1,6 +1,8 @@
+import { config } from '~/config.ts';
+
 const formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
-	currency: 'USD',
+	currency: config.currency || 'USD',
 });
 
 /**
