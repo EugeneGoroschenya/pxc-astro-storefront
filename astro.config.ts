@@ -1,4 +1,5 @@
-import netlify from '@astrojs/netlify';
+//import netlify from '@astrojs/netlify';
+import node from '@astrojs/node';
 import solidJs from '@astrojs/solid-js';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
@@ -8,9 +9,12 @@ import { defineConfig, envField } from 'astro/config';
 export default defineConfig({
 	integrations: [tailwind({ applyBaseStyles: false }), icon(), solidJs()],
 	// Update to your storefront URL
+	// site: 'http://localhost',
 	site: 'https://shop.astro.build',
 	output: 'server',
-	adapter: netlify({ imageCDN: true }),
+	// base: '/pxc', // TODO doesn't work out the box
+	// adapter: netlify({ imageCDN: true }),
+	adapter: node({ mode: 'standalone' }),
 	vite: {
 		build: {
 			assetsInlineLimit(filePath) {
@@ -85,10 +89,12 @@ export default defineConfig({
 				US_SHIPPING_RATE_ID: envField.string({
 					context: 'server',
 					access: 'secret',
+					optional: true,
 				}),
 				INTERNATIONAL_SHIPPING_RATE_ID: envField.string({
 					context: 'server',
 					access: 'secret',
+					optional: true,
 				}),
 			},
 		},
