@@ -39,3 +39,14 @@ cp ../../../src/pages/index.astro .
 cd ../../..
 # modify ./stores/prodexa/pages/index.astro
 ```
+
+```shell
+rm ./stores/prodexa/pages/products
+mkdir ./stores/prodexa/pages/products
+cd ./stores/prodexa/pages/products
+ln -s ../../../../src/pages/products/* .
+rm "./[product].astro"
+cp "../../../../src/pages/products/[product].astro" .
+cd ../../../..
+# modify ./stores/prodexa/pages/index.astro
+```
