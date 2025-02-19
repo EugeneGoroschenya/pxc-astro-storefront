@@ -7,6 +7,8 @@ import { defineConfig, envField } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+	//srcDir: './src',
+	srcDir: './stores/prodexa',
 	integrations: [tailwind({ applyBaseStyles: false }), icon(), solidJs()],
 	// Update to your storefront URL
 	// site: 'http://localhost',
@@ -16,6 +18,9 @@ export default defineConfig({
 	// adapter: netlify({ imageCDN: true }),
 	adapter: node({ mode: 'standalone' }),
 	vite: {
+		resolve: {
+			preserveSymlinks: true
+		},
 		build: {
 			assetsInlineLimit(filePath) {
 				return filePath.endsWith('css');
