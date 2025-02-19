@@ -30,6 +30,7 @@ import type {
 } from './client.types.ts';
 
 import { config } from '~/config.ts';
+import { SHOP_API_KEY, SHOP_API_URL } from 'astro:env/server';
 
 export * from './client.types.ts';
 
@@ -41,10 +42,10 @@ const categories = ['Smartwatches', 'Tablets'];
 
 const page = { offset: 0, limit: 9999 };
 
-const baseApiUrl = 'http://localhost:8080/pxm/';
-
+const baseApiUrl = SHOP_API_URL;
+const PXM_USER = SHOP_API_KEY || '';
 const productsApiUrl = `${baseApiUrl}api/products/search/full-product?page=${page.offset}&size=${page.limit}&language=${language}`;
-const workareaApiUrl = `${baseApiUrl}workarea/`;
+const imageEndpoint = `/api/workarea/`;
 
 const products: Record<string, Product> = {};
 
@@ -53,7 +54,7 @@ export const getProducts = async <ThrowOnError extends boolean = false>(
 ): Promise<RequestResult<GetProductsResponse, GetProductsError, ThrowOnError>> => {
 	const response = await fetch(productsApiUrl, {
 		headers: {
-			PXM_USER: 'admin',
+			PXM_USER,
 			'content-type': 'application/json',
 		},
 		body: '{"searchParams":{},"facetParams":{}}',
@@ -73,7 +74,9 @@ export const getProducts = async <ThrowOnError extends boolean = false>(
 				...new Set(
 					p.productDocuments
 						?.sort((d) => (d.documentViewTypeId === 'preview' ? 1 : 0))
-						?.filter(({ languageId, variantId }) => !variantId && (languageId === language || !languageId))
+						?.filter(
+							({ languageId, variantId }) => !variantId && (languageId === language || !languageId),
+						)
 						?.map(({ path }) => path)
 						?.filter((path) => !path?.toLocaleString()?.endsWith('.pdf')) || [],
 				),
@@ -83,10 +86,11 @@ export const getProducts = async <ThrowOnError extends boolean = false>(
 
 			const otherDocuments = Array.from(documents).splice(1);
 
-			const imageUrl = (previewPath && workareaApiUrl + previewPath) || '/no-img.png';
+			const imageUrl = (previewPath && `${imageEndpoint}${previewPath}`) || '/no-img.png';
 			const price = getPrice(p);
 
 			const collectionIds = [...getGroupsIds(p), price ? 'bestSellers' : null];
+
 			return {
 				...productDefaults,
 
@@ -100,7 +104,7 @@ export const getProducts = async <ThrowOnError extends boolean = false>(
 				price: price ? price * 100 : 50 * 100 + Math.random() * 50 * 100,
 				description: p.values?.LongDescription?.[language],
 
-				images: otherDocuments.map((id) => ({ id, url: workareaApiUrl + id })),
+				images: otherDocuments.map((id) => ({ id, url: `${imageEndpoint}${id}` })),
 
 				discount: price > 300 ? 100 * 5 : 0,
 
@@ -325,3 +329,6 @@ function getProductVariantFromLineItemInput(
 	}
 	throw new Error(`Product variant ${variantId} not found`);
 }
+
+export const getImage = (path: string | undefined) =>
+	fetch(`${baseApiUrl}workarea/${path}`, { headers: { PXM_USER: 'admin' } });
