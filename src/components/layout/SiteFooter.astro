@@ -2,13 +2,14 @@
 // import { Icon } from 'astro-icon/components';
 import ExternalLink from '~/components/ui/ExternalLink.astro';
 // import SocialIconLink from './SocialIconLink.astro';
+import defaultLogo from '~/icons/logo.png';
 
 export interface Props {
 	class?: string;
 }
 ---
 
-<footer class={Astro.props.class}>
+<footer class={Astro.props.class + ' flex flex-col h-full'}>
 	<!--<section class="flex flex-wrap items-center justify-between gap-y-2 py-4">-->
 	<!--	<ul class="flex flex-wrap gap-2" aria-label="Supported payment methods">-->
 	<!--		<li>-->
@@ -66,14 +67,14 @@ export interface Props {
 	<!--	</ul>-->
 	<!--</section>-->
 
-	<div class="border-b border-theme-base-300"></div>
+	<div class="flex-grow border-b border-theme-base-300"></div>
 
 	<section class="flex flex-wrap justify-center gap-y-2 py-6 text-sm text-theme-base-600">
 
 		<p class="whitespace-nowrap flex">
 			<ExternalLink href="https://prodexa.com/" target="_blank" rel="noopener noreferrer" class="m-auto me-2">
 				<img
-					src="/prodexa-logo.png"
+					src={defaultLogo.src}
 					alt="prodexa Logo"
 					class="max-h-8 sm:max-h-16 w-10 object-contain object-left" />
 			</ExternalLink>

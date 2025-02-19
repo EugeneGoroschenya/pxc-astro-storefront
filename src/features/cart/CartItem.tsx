@@ -11,11 +11,13 @@ import {
 } from '~/features/cart/cart.ts';
 import { ProductPrice } from '~/features/product/ProductPrice.tsx';
 import { queryClient } from '~/lib/query.ts';
-import { productPath } from '~/paths.ts';
+
+import { productPathClient } from '~/paths.client.ts';
+
 import { card } from '~/styles.ts';
 import { cartQueryOptions } from './cart.queries.ts';
 
-export function CartItem(props: { item: LineItem; class?: string }) {
+export function CartItem(props: { item: LineItem; class?: string, store: string | null | undefined }) {
 	const updateMutation = createMutation(
 		() => ({
 			mutationKey: ['cart', 'items', 'update', props.item.id],
@@ -63,7 +65,7 @@ export function CartItem(props: { item: LineItem; class?: string }) {
 		<Show when={deleteMutation.isIdle}>
 			<div class={`flex items-start gap-8 ${props.class ?? ''}`}>
 				<a
-					href={productPath(props.item.productVariant.product.slug)}
+					href={productPathClient(props.item.productVariant.product.slug, props.store)}
 					class={card({ className: 'w-32' })}
 				>
 					<img

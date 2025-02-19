@@ -73,7 +73,9 @@ export const getProducts = async <ThrowOnError extends boolean = false>(
 				...new Set(
 					p.productDocuments
 						?.sort((d) => (d.documentViewTypeId === 'preview' ? 1 : 0))
-						?.filter(({ languageId, variantId }) => !variantId && (languageId === language || !languageId))
+						?.filter(
+							({ languageId, variantId }) => !variantId && (languageId === language || !languageId),
+						)
 						?.map(({ path }) => path)
 						?.filter((path) => !path?.toLocaleString()?.endsWith('.pdf')) || [],
 				),

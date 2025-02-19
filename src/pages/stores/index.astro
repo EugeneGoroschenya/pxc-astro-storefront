@@ -1,0 +1,25 @@
+---
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import { config } from '~/config';
+
+const name = config.name;
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title=`${name}`>
+	<main class="breakout mt-16 flex flex-col gap-y-16 justify-items-center">
+		<section>
+			<div>
+				<a href="/stores/default">Shop</a>
+			</div>
+			<div>
+				<a href="/stores/limango" class="text-green-600">limango shop</a>
+			</div>
+			<div>
+				<a href="/stores/o2online" class="text-blue-600">O<sub>2</sub> shop</a>
+			</div>
+		</section>
+	</main>
+</PrimaryLayout>

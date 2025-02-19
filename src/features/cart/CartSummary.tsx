@@ -6,7 +6,7 @@ import { button } from '~/styles.ts';
 import { CartItem } from './CartItem.tsx';
 import { cartQueryOptions } from './cart.queries.ts';
 
-export function CartSummary() {
+export function CartSummary(props: { store: string | null | undefined }) {
 	const query = createQuery(
 		() => cartQueryOptions(),
 		() => queryClient,
@@ -32,8 +32,8 @@ export function CartSummary() {
 	return (
 		<div class="flex h-full min-h-0 flex-col">
 			<ul class="min-h-0 flex-1 overflow-y-auto">
-				<Index each={query.data.items} fallback={<CartEmptyState />}>
-					{(item) => <CartItem item={item()} class="border-b pb-3 pt-4" />}
+				<Index each={query.data.items} fallback={<CartEmptyState store={props.store} />}>
+					{(item) => <CartItem item={item()} store={props.store} class="border-b pb-3 pt-4" />}
 				</Index>
 			</ul>
 			<Show when={query.data.items.length > 0}>
@@ -53,14 +53,14 @@ export function CartSummary() {
 	);
 }
 
-function CartEmptyState() {
+function CartEmptyState(props: { store: string | null | undefined }) {
 	return (
 		<div class="flex h-full flex-col items-center justify-center gap-8 p-4 text-center">
 			<EmptyStateCartGraphic />
 
 			<div data-testid="cart-empty" class="flex flex-col items-center gap-4">
 				<h2 class="text-lg font-medium text-gray-700">Your cart is empty</h2>
-				<a href="/" class={button({ className: 'mt-2' })}>
+				<a href={`/stores/${props.store}`} class={button({ className: 'mt-2' })}>
 					Start shopping
 				</a>
 			</div>

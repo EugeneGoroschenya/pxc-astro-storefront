@@ -6,21 +6,27 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'nav'> {}
 
 const { class: className, ...props } = Astro.props;
+const homePage = `/stores/${Astro.locals.store || ''}`;
 ---
 
 <nav
 	aria-label="Site navigation"
-	class:list={["min-h-20 !flex items-center flex-row md:justify-between py-2 bg-white", className]}
+	class:list={[
+		'!flex max-h-20 min-h-20 flex-row items-center bg-white py-2 md:justify-between',
+		className,
+	]}
 	{...props}
 >
 	<div class="flex-1">
-		<a class="-m-2 block w-fit p-2 transition hover:text-theme-base-600" href="/">
-			<AstroLogo class="relative" />
+		<a class="-m-2 block w-fit p-2 transition hover:text-theme-base-600" href={homePage || '/'}>
+			<slot name="logo">
+				<AstroLogo class="relative" />
+			</slot>
 			<span class="sr-only">Home</span>
 		</a>
 	</div>
 	<div class="flex flex-1 justify-end gap-2">
-		<CartDrawer client:idle />
+		<CartDrawer store={Astro.locals.store} client:idle />
 	</div>
 </nav>
 
@@ -31,6 +37,7 @@ const { class: className, ...props } = Astro.props;
 			searchInput!.focus();
 		}
 	}
+
 	document.addEventListener('astro:page-load', focusSearch);
 	document.addEventListener('astro:after-swap', focusSearch);
 </script>

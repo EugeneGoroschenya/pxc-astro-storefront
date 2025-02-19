@@ -8,7 +8,7 @@ import { queryClient } from '~/lib/query.ts';
 import { CartButton } from './CartButton.tsx';
 import { CartStore } from './store.ts';
 
-export function CartDrawer() {
+export function CartDrawer(props: { store: string | null | undefined }) {
 	const query = createQuery(
 		() => cartQueryOptions(),
 		() => queryClient,
@@ -22,7 +22,7 @@ export function CartDrawer() {
 			trigger={<CartButton as="div" />}
 		>
 			<div class="flex h-full flex-col py-4">
-				<CartSummary />
+				<CartSummary store={props.store}/>
 				<Show when={query.data.items.length > 0}>
 					<form method="post" action="/api/checkout" class="contents" data-astro-reload>
 						<Button type="submit">Checkout</Button>
