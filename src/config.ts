@@ -15,7 +15,6 @@ export function applyDefaultCacheHeaders(headers: Headers) {
 
 export const config = {
 	name: 'prodexa PXC',
-	favicon: '/favicon.svg',
-	language: 'en-GB',
+	favicon: '/favicon.svg',	language: 'en-GB',
 	currency: 'EUR',
 };
