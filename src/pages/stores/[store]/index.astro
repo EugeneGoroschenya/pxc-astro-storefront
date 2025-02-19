@@ -6,12 +6,16 @@ import { config } from '~/config';
 const name = config.name;
 
 applyDefaultCacheHeaders(Astro.response.headers);
+
+const { store } = Astro.params;
+
+// return Astro.rewrite('/stores/default');
 ---
 
 <PrimaryLayout title=`${name}`>
-	<main class="breakout mt-16 flex flex-col gap-y-16 justify-items-center">
+	<main class="breakout mt-16 flex flex-col justify-items-center gap-y-16">
 		<section>
-			No Such Store
+			No Such Store: {store}
 		</section>
 	</main>
 </PrimaryLayout>

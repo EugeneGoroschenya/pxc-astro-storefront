@@ -1,0 +1,9 @@
+---
+import { applyDefaultCacheHeaders } from '~/config.ts';
+
+const { path } = Astro.params;
+
+applyDefaultCacheHeaders(Astro.response.headers);
+
+return Astro.rewrite(`/stores/default/${path}`);
+---
