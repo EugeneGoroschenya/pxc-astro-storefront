@@ -52,6 +52,7 @@ const products: Record<string, Product> = {};
 export const getProducts = async <ThrowOnError extends boolean = false>(
 	options?: Options<GetProductsData, ThrowOnError>,
 ): Promise<RequestResult<GetProductsResponse, GetProductsError, ThrowOnError>> => {
+
 	const response = await fetch(productsApiUrl, {
 		headers: {
 			PXM_USER,
