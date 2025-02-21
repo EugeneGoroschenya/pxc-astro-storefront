@@ -1,0 +1,126 @@
+{
+  "categories": [
+    {
+      "classificationId": "100",
+      "categoryId": "electronics",
+      "name": "Electronics",
+      "description": "Electronic devices and accessories",
+      "parent": null,
+      "children": [
+        {
+          "classificationId": "100",
+          "categoryId": "laptops",
+          "name": "Laptops",
+          "description": "Portable computers",
+          "parent": "electronics",
+          "children": []
+        }
+      ],
+      "attributes": [
+        {
+          "attributeId": "color",
+          "name": "Color",
+          "type": "string",
+          "options": [
+            {
+              "value": "black",
+              "name": "Black"
+            },
+            {
+              "value": "silver",
+              "name": "Silver"
+            }
+          ],
+          "sectionName": "General"
+        }
+      ],
+      "imageUrl": "https://example.com/electronics.jpg"
+    }
+  ],
+  "products": [
+    {
+      "catalogId": "PX1001",
+      "productId": "laptop-123",
+      "sku": "LAPTOP-123",
+      "name": "Gaming Laptop",
+      "description": "High-performance gaming laptop",
+      "gtin": "0123456789012",
+      "images": [
+        "https://example.com/laptop.jpg"
+      ],
+      "categories": [
+        "electronics",
+        "laptops"
+      ],
+      "attributes": {
+        "color": "black",
+        "processor": "Intel i7"
+      },
+      "variants": [
+        {
+          "catalogId": "PX1001",
+          "productId": "laptop-123",
+          "variantId": "variant-1",
+          "sku": "LAPTOP-123-BLK",
+          "name": "Gaming Laptop - Black",
+          "gtin": "0123456789013",
+          "stock": {
+            "quantity": 50,
+            "status": "in_stock"
+          },
+          "price": {
+            "currency": "USD",
+            "amount": 1200
+          },
+          "manufacturer": {
+            "manufacturerId": "MFG1001",
+            "name": "TechBrand",
+            "logoUrl": "https://example.com/techbrand-logo.jpg"
+          }
+        }
+      ],
+      "relatedProducts": {
+        "accessory": [
+          {
+            "catalogId": "PX1002",
+            "productId": "gaming-mouse",
+            "name": "Gaming Mouse"
+          }
+        ]
+      },
+      "stock": {
+        "quantity": 100,
+        "status": "in_stock"
+      },
+      "price": {
+        "currency": "USD",
+        "amount": 1500
+      },
+      "customerPricing": [
+        {
+          "customerId": "VIP",
+          "price": {
+            "currency": "USD",
+            "amount": 1400
+          }
+        }
+      ],
+      "suppliers": [
+        {
+          "supplierId": "SUPP1001",
+          "name": "Distributor X",
+          "price": {
+            "currency": "USD",
+            "amount": 1300
+          },
+          "stock": {
+            "quantity": 500,
+            "status": "in_stock"
+          },
+          "leadTimeDays": 5
+        }
+      ],
+      "createdAt": "2024-02-18T12:00:00Z"
+    }
+  ]
+}
