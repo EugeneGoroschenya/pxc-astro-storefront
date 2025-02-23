@@ -3,7 +3,7 @@ type Product = {
 	/** Unique identifier for the product */
 	catalogId: string;
 	productId: string;
-	revision?: string | number; // string or number? LATER
+	revision?: string | number | null; // string or number? LATER
 
 	/** Stock Keeping Unit (SKU), a unique identifier for tracking */
 	sku: string;
@@ -57,7 +57,7 @@ type ProductVariant = {
 	catalogId: string;
 	productId: string;
 	variantId: string;
-	revision?: string | number; // string or number? LATER
+	revision?: string | number | null; // string or number? LATER
 
 	/** Stock Keeping Unit (SKU) for the variant */
 	sku: string;
