@@ -5,9 +5,9 @@ export default {
 	printWidth: 100,
 	semi: true,
 	singleQuote: true,
-	tabWidth: 2,
+	tabWidth: 4,
 	trailingComma: 'all',
-	useTabs: true,
+	useTabs: false,
 	plugins: ['prettier-plugin-astro', 'prettier-plugin-jsdoc', 'prettier-plugin-tailwindcss'],
 	overrides: [
 		{
