@@ -15,8 +15,8 @@ type Attribute = {
     /** Optional predefined values */
     options?: Option[];
 
-    /** Name of the section (e.g., "General Specs", "Performance", "Dimensions") */
-    sectionName: string;
+    /** Optional attribute section */
+    attributeSection?: AttributeSection;
 };
 
 /** Represents an option for an attribute. */
@@ -28,7 +28,7 @@ type Option = {
     name: string;
 };
 
-/** Represents a unit of measure with additional metadata. */
+/** Represents a unit of measure */
 type UnitOfMeasure = {
     /** Unique identifier or standard code */
     unitOfMeasureId: string;
@@ -37,5 +37,14 @@ type UnitOfMeasure = {
     symbol: string;
 
     /** Full name of the unit (e.g., "Kilogram", "Meter", "Watt") */
+    name: string;
+};
+
+/** Represents an attribute section  */
+type AttributeSection = {
+    /** Unique identifier */
+    sectionId: string;
+
+    /** Name of the section (e.g., "General Specs", "Performance", "Dimensions") */
     name: string;
 };

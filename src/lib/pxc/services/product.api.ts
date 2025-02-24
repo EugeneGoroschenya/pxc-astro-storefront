@@ -1,13 +1,9 @@
-interface ProductApi {
+interface ProductAPI {
     // search products with pagination and sorting
     search(params: ProductSearchParams): PaginatedProductResult;
 
     // get product by catalogId, productId and optionally by revision
-    get(productKey: {
-        catalogId: Product['catalogId'];
-        productId: Product['productId'];
-        revision?: Product['revision'];
-    }): Promise<Product>;
+    get(catalogId: string, productId: string, revision?: string): Product;
 }
 
 //  Search Query Params
