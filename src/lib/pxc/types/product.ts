@@ -3,7 +3,7 @@ type Product = {
     /** Unique identifier for the product */
     catalogId: string;
     productId: string;
-    revision?: string | number | null; // string or number? LATER
+    revision?: string | number; // string or number? LATER
 
     /** Stock Keeping Unit (SKU), a unique identifier for tracking */
     sku: string;
@@ -22,6 +22,9 @@ type Product = {
 
     /** Optional list of categories the product belongs to */
     categories?: Category[];
+
+    /** Optional manufacturer of the product */
+    manufacturer?: Manufacturer;
 
     /** Custom attributes for the product (e.g., material, weight, voltage) */
     attributes?: ProductAttributes;
@@ -57,7 +60,7 @@ type ProductVariant = {
     catalogId: string;
     productId: string;
     variantId: string;
-    revision?: string | number | null; // string or number? LATER
+    revision?: string | number; // string or number? LATER
 
     /** Stock Keeping Unit (SKU) for the variant */
     sku: string;
@@ -70,9 +73,6 @@ type ProductVariant = {
 
     /** Optional list of image URLs for the variant */
     images?: string[];
-
-    /** Optional manufacturer of the product */
-    manufacturer?: Manufacturer;
 
     /** Stock details for this specific variant */
     stock: Stock;
@@ -97,12 +97,15 @@ type ProductAttributes = {
 
 /** Represents a flexible attribute value that can be of different types. */
 type AttributeValue =
-    | string // Example: "Red"
-    | number // Example: 42
-    | boolean // Example: true (e.g., "isWaterproof": true)
-    | { year: number; month: number; day: number } // for 'date' type, Example: {year: 2025, month: 2, day: 21}
-    | AttributeValue[] // for multivalued, Example: ["Small", "Medium", "Large"], [10, 20, 30] (e.g., weight options)
-    | ProductAttributes; // for composite
+    | string
+    | number
+    | boolean
+    // for 'date' type, Example: {year: 2025, month: 2, day: 21}
+    | { year: number; month: number; day: number }
+    // for multivalued, Example: ["Small", "Medium", "Large"], [10, 20, 30] (e.g., weight options)
+    | AttributeValue[]
+    // for composite
+    | ProductAttributes;
 
 /** Represents a manufacturer of a product. */
 type Manufacturer = {
