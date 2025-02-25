@@ -55,6 +55,7 @@
 		"@tanstack/solid-query-devtools": "^5.52.2",
 		"@total-typescript/ts-reset": "^0.6.1",
 		"astro": "^4.12.2",
+		"astro-global": "^2.0.0",
 		"astro-icon": "^1.1.1",
 		"marked": "^15.0.6",
 		"sharp": "^0.33.5",

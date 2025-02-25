@@ -1,0 +1,19 @@
+---
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import { config } from '~/config';
+
+const name = config.name;
+
+const { path } = Astro.params;
+
+applyDefaultCacheHeaders(Astro.response.headers);
+
+// return Astro.rewrite(`/stores/default/${path}`);
+---
+
+<PrimaryLayout title=`${name}`>
+	<main class="breakout mt-16 flex flex-col justify-items-center gap-y-16">
+		<section>No Such Page: {path}</section>
+	</main>
+</PrimaryLayout>

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 @layer base {
 	:focus {
@@ -64,6 +65,7 @@
 			--content-width: theme('screens.2xl');
 			--side-padding: theme('space.4');
 			display: grid;
+			grid-template-rows: min-content min-content min-content min-content auto;
 			grid-auto-flow: row;
 			grid-template-columns:
 				[breakout-start]

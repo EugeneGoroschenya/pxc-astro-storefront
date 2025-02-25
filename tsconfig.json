@@ -4,6 +4,7 @@
 	"compilerOptions": {
 		"exactOptionalPropertyTypes": false,
 		"baseUrl": ".",
+		"types": ["@total-typescript/ts-reset"],
 		"paths": {
 			"~/*": ["./src/*"],
 			"storefront:client": ["./src/lib/client.prodexa.ts"]

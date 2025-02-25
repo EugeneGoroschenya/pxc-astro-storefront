@@ -10,7 +10,7 @@ import { CartStore } from './store.ts';
 
 const MAX_QUANTITY = 20;
 
-export function AddToCartForm(props: { product: Product }) {
+export function AddToCartForm(props: { product: Product, store: string | null | undefined }) {
 	const [selectedOptions, setSelectedOptions] = createSignal<Record<string, string>>({});
 	const [quantity, setQuantity] = createSignal(1);
 	const [unpickedVariantVisible, setUnpickedVariantVisible] = createSignal(false);

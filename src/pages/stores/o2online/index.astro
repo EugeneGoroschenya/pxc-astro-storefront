@@ -1,0 +1,22 @@
+---
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import { config } from '~/config';
+
+import logoRaw from '~/stores/o2online/icons/logo.svg?raw';
+
+const name = config.name;
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title={name}>
+	<main class="breakout mt-16 flex flex-col gap-y-2">
+		<section class="flex gap-1">
+			<div class="my-auto inline-block h-5 w-5 text-blue-600">
+				<Fragment set:html={logoRaw} />
+			</div>
+			<div>https://www.o2online.de/e-shop</div>
+		</section>
+	</main>
+</PrimaryLayout>

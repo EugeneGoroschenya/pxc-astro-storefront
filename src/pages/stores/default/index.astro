@@ -1,0 +1,25 @@
+---
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import ProductCarouselSection from '~/features/product/ProductCarouselSection.astro';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import { config } from '~/config';
+
+const name = config.name;
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title=`${name}`>
+	<main class="breakout mt-16 flex flex-col">
+		<div class="content mb-16">
+			<ProductCarouselSection
+				heading="Popular right now"
+				filterProducts={(products) =>
+					products.filter(({ collectionIds }) => collectionIds?.includes('bestSellers'))}
+			/>
+		</div>
+
+		<CollectionSection />
+	</main>
+</PrimaryLayout>

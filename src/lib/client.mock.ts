@@ -150,7 +150,7 @@ const collections: Record<string, Collection> = {
 		name: 'Apparel',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'apparel',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '/assets/sm.png',
 		...collectionDefaults,
 	},
 	stickers: {

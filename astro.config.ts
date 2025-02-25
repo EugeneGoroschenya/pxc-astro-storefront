@@ -4,10 +4,11 @@ import solidJs from '@astrojs/solid-js';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig, envField } from 'astro/config';
+import global from 'astro-global';
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [tailwind({ applyBaseStyles: false }), icon(), solidJs()],
+	integrations: [tailwind({ applyBaseStyles: false }), icon(), solidJs(), global()],
 	// Update to your storefront URL
 	// site: 'http://localhost',
 	site: 'https://shop.astro.build',
