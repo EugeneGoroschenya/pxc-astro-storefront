@@ -3,19 +3,22 @@ import node from '@astrojs/node';
 import solidJs from '@astrojs/solid-js';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
-import { defineConfig, envField } from 'astro/config';
+import { type AstroUserConfig, defineConfig, envField } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({
+export const astroConfig: AstroUserConfig = {
+	outDir: 'dist/standard',
 	integrations: [tailwind({ applyBaseStyles: false }), icon(), solidJs()],
 	// Update to your storefront URL
-	// site: 'http://localhost',
-	site: 'https://shop.astro.build',
+	site: 'http://localhost',
 	output: 'server',
 	// base: '/pxc', // TODO doesn't work out the box
 	// adapter: netlify({ imageCDN: true }),
 	adapter: node({ mode: 'standalone' }),
 	vite: {
+		resolve: {
+			preserveSymlinks: true
+		},
 		build: {
 			assetsInlineLimit(filePath) {
 				return filePath.endsWith('css');
@@ -99,4 +102,6 @@ export default defineConfig({
 			},
 		},
 	},
-});
+};
+
+export default defineConfig(astroConfig);
